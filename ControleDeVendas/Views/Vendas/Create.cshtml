@@ -1,0 +1,53 @@
+﻿@model ControleDeVendas.Models.VendaFormViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h1>Nova Venda</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label asp-for="Venda.VendedorId" class="control-label"></label>
+                    <select asp-for="Venda.VendedorId" asp-items="@(new SelectList(Model.Vendedores,"Id",
+                   "Name"))" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Venda.ProdutoId" class="control-label"></label>
+                    <select asp-for="Venda.ProdutoId" asp-items="@(new SelectList(Model.Produtos,"Id",
+                   "Nome"))" class="form-control"></select>
+                </div>
+                <label asp-for="Venda.DataVenda" class="control-label"></label>
+                <input asp-for="Venda.DataVenda" class="form-control" />
+                <span asp-validation-for="Venda.DataVenda" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Venda.ValorVenda" class="control-label"></label>
+                <input asp-for="Venda.ValorVenda" class="form-control" />
+                <span asp-validation-for="Venda.ValorVenda" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Venda.QtdeVenda" class="control-label"></label>
+                <input asp-for="Venda.QtdeVenda" class="form-control" />
+                <span asp-validation-for="Venda.QtdeVenda" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
